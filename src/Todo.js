@@ -11,6 +11,8 @@ export const Todo = ({ todo }) => {
 
 const styles = StyleSheet.create({
     todo: {
+        flexDirection: 'row',
+        alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 10,
         marginBottom: 20,
