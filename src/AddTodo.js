@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, StyleSheet, TextInput, Button} from 'react-native'
+import {View, StyleSheet, TextInput, Button, Alert} from 'react-native'
 
 export const AddTodo = props => {
     const [text, setText] = useState('');
@@ -7,6 +7,8 @@ export const AddTodo = props => {
         if (text.trim()) {
             props.onSubmit(text);
             setText('');
+        } else {
+            Alert.alert("Название задачи не может быть пустым")
         }
 
     }
