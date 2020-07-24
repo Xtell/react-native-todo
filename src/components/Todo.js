@@ -1,5 +1,6 @@
 import React from 'react'
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+import { THEME } from '../theme';
 
 export const Todo = ({ todo, onRemove, onOpen }) => {
     const longPressHandler = () => {
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         borderStyle: 'solid',
         borderWidth: 1,
-        borderColor: "#e3e3e3",
+        borderColor: THEME.GRAY_COLOR,
         borderRadius: 5
 
     }
