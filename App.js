@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native'
+import { StyleSheet, View, Alert} from 'react-native'
 import {Navbar} from './src/components/Navbar'
 import {MainScreen} from './src/screens/MainScreen'
 import {TodoScreen} from './src/screens/TodoScreen'
@@ -16,8 +16,35 @@ export default function App() {
       }
     ])
   }
+  const updateTodo = (id, title) => {
+    setTodos(old => old.map(todo => {
+      if (todo.id === id) {
+        todo.title = title;
+      }
+      return todo
+    }))
+  }
   const removeTodo = id => {
-    setTodos(prev => prev.filter( todo => todo.id !== id));
+    const todo = todos.find(todo => todo.id === id);
+    Alert.alert(
+      'Удаление',
+      `Вы действительно хотите удалить "${todo.title}"?`,
+      [
+          {
+              text: 'Отмена',
+              style: 'Negative'
+
+          },
+          {
+              text: 'Удалить',
+              onPress: () => {
+                setTodoId(null);
+                setTodos(prev => prev.filter( todo => todo.id !== id));
+              }
+          }
+      ]
+  );
+    
   }
   const openTodo = (todoId) => {
     setTodoId(todoId)
@@ -30,7 +57,7 @@ export default function App() {
   )
   if (todoId) {
     let selectedTodo = todos.find(todo => todo.id === todoId );
-    content = <TodoScreen goBack={goBack} todo={selectedTodo}/>
+    content = <TodoScreen goBack={goBack} todo={selectedTodo} removeTodo={removeTodo} updateTodo={updateTodo} />
   }
 
   return (

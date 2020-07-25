@@ -2,7 +2,7 @@ import React from 'react'
 import {View, StyleSheet} from 'react-native'
 
 export const AppCard = (props) => (
-    <View style={styles.card}>
+    <View style={ {...styles.card, ...props.style} }>
         {props.children}
     </View>
 );
