@@ -4,6 +4,7 @@ import { AppCard } from "../components/ui/AppCard";
 import { EditModal } from "../components/EditModal";
 import { AppButton } from "../components/ui/AppButton";
 import { AppTextBold } from "../components/ui/AppTextBold";
+import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import { THEME } from "../theme";
 export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo }) => {
   let [modal, setModal] = useState(false);
@@ -25,21 +26,24 @@ export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo }) => {
       ></EditModal>
       <AppCard style={styles.card}>
         <AppTextBold style={styles.text}>{todo.title}</AppTextBold>
-        <Button title="Ред." onPress={() => setModal(true)} />
+        <AppButton onPress={() => setModal(true)}>
+          <FontAwesome name="edit" size={20} />
+        </AppButton>
       </AppCard>
 
       <View style={styles.buttons}>
         <View style={styles.button}>
           <AppButton color={THEME.DARK_GREY} onPress={goBack}>
-            Назад
+            <AntDesign name="back" size={20} />
           </AppButton>
         </View>
         <View style={styles.button}>
-          <Button
-            title="Удалить"
+          <AppButton
             color={THEME.DANGER_COLOR}
             onPress={() => removeTodo(todo.id)}
-          />
+          >
+            <FontAwesome name="remove" size={20} />
+          </AppButton>
         </View>
       </View>
     </View>
