@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, StyleSheet, TextInput, Button, Alert} from 'react-native'
+import {View, StyleSheet, TextInput, Alert, Keyboard} from 'react-native'
 import {AntDesign} from "@expo/vector-icons"
 export const AddTodo = props => {
     const [text, setText] = useState('');
@@ -7,6 +7,7 @@ export const AddTodo = props => {
         if (text.trim()) {
             props.onSubmit(text);
             setText('');
+            Keyboard.dismiss();
         } else {
             Alert.alert("Название задачи не может быть пустым")
         }
