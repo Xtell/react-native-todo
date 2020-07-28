@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, Button, Alert, TextInput } from "react-native";
 import { AppCard } from "../components/ui/AppCard";
-import { AppModal } from "../components/ui/AppModal";
 import { EditModal } from "../components/EditModal";
+import {AppText} from "../components/ui/AppText";
+import {AppTextBold} from "../components/ui/AppTextBold";
 import { THEME } from "../theme";
 export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo }) => {
   let [modal, setModal] = useState(false);
@@ -13,28 +14,17 @@ export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo }) => {
   const saveHandler = (title) => {
     setModal(false);
     updateTodo(todo.id, title);
-  }
+  };
   return (
     <View>
-      {/* <AppModal visible={appModalVisible} closeModal={closeModal}>
-        <View style={styles.appModal}>
-          <View style={styles.modalInput}>
-            <TextInput style={styles.input} value={text} onChangeText={(text) => setText(text)} focusable={true} />
-            <Button
-              title="Изменить"
-              onPress={() => setAppModalVisible(false)}
-            />
-          </View>
-          <Button
-            title="Отмена"
-            onPress={() => setAppModalVisible(false)}
-            color={THEME.DARK_GREY}
-          />
-        </View>
-      </AppModal> */}
-      <EditModal visible={modal} onCancel={() => setModal(false)} value={todo.title} onSave={saveHandler}></EditModal>
+      <EditModal
+        visible={modal}
+        onCancel={() => setModal(false)}
+        value={todo.title}
+        onSave={saveHandler}
+      ></EditModal>
       <AppCard style={styles.card}>
-        <Text style={styles.text}>{todo.title}</Text>
+        <AppTextBold style={styles.text}>{todo.title}</AppTextBold>
         <Button title="Ред." onPress={() => setModal(true)} />
       </AppCard>
 
