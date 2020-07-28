@@ -27,6 +27,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: THEME.GRAY_COLOR,
         borderRadius: 5
-
+    },
+    text: {
+        fontFamily: 'roboto-bold'
     }
 })
