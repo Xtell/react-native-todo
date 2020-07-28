@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { View, StyleSheet, Text, Button, Alert, TextInput } from "react-native";
 import { AppCard } from "../components/ui/AppCard";
 import { EditModal } from "../components/EditModal";
-import {AppText} from "../components/ui/AppText";
-import {AppTextBold} from "../components/ui/AppTextBold";
+import { AppButton } from "../components/ui/AppButton";
+import { AppTextBold } from "../components/ui/AppTextBold";
 import { THEME } from "../theme";
 export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo }) => {
   let [modal, setModal] = useState(false);
@@ -30,7 +30,9 @@ export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo }) => {
 
       <View style={styles.buttons}>
         <View style={styles.button}>
-          <Button color={THEME.DARK_GREY} title="Назад" onPress={goBack} />
+          <AppButton color={THEME.DARK_GREY} onPress={goBack}>
+            Назад
+          </AppButton>
         </View>
         <View style={styles.button}>
           <Button
