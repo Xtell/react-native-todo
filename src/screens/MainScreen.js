@@ -2,7 +2,6 @@ import React from "react";
 import { View, StyleSheet, FlatList, Image } from "react-native";
 import { AddTodo } from "../components/AddTodo";
 import { Todo } from "../components/Todo";
-
 export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
   let content = (
     <FlatList
@@ -36,11 +35,9 @@ const styles = StyleSheet.create({
     // flex: 1,
   },
   container: {
-
     flex: 1,
   },
   imageWrapper: {
-
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
