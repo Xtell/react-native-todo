@@ -4,54 +4,22 @@ import { Navbar } from './components/Navbar';
 import { MainScreen } from './screens/MainScreen';
 import { TodoScreen } from './screens/TodoScreen';
 import { TodoContext } from './context/todo/todoContext';
+import { ScreenContext } from './context/screen/screenContext';
 
 export const MainLayout = () => {
-  const {todos, addTodo, removeTodo, updateTodo } = useContext(TodoContext);
-  console.log(addTodo);
-  const [todoId, setTodoId] = useState(null);
-  // const addTodo = (title) => {
-  //   setTodos((prev) => [
-  //     ...prev,
-  //     {
-  //       id: Date.now().toString(),
-  //       title,
-  //     },
-  //   ]);
+  const { todos, addTodo, removeTodo, updateTodo } = useContext(TodoContext);
+  // const [todoId, setTodoId] = useState(null);
+  const { todoId, goBack, openTodo } = useContext(ScreenContext);
+  console.log(todoId);
+
+  // const openTodo = (todoId) => {
+  //   setTodoId(todoId);
   // };
-  // const updateTodo = (id, title) => {
-  //   setTodos((old) =>
-  //     old.map((todo) => {
-  //       if (todo.id === id) {
-  //         todo.title = title;
-  //       }
-  //       return todo;
-  //     }),
-  //   );
+  // const goBack = () => {
+  //   setTodoId(null);
   // };
-  // const removeTodo = (id) => {
-  //   const todo = todos.find((todo) => todo.id === id);
-  //   Alert.alert('Удаление', `Вы действительно хотите удалить "${todo.title}"?`, [
-  //     {
-  //       text: 'Отмена',
-  //       style: 'Negative',
-  //     },
-  //     {
-  //       text: 'Удалить',
-  //       onPress: () => {
-  //         setTodoId(null);
-  //         setTodos((prev) => prev.filter((todo) => todo.id !== id));
-  //       },
-  //     },
-  //   ]);
-  // };
-  const openTodo = (todoId) => {
-    setTodoId(todoId);
-  };
-  const goBack = () => {
-    setTodoId(null);
-  };
   let content = (
-    <MainScreen addTodo={addTodo} todos={todos} removeTodo={removeTodo} openTodo={setTodoId} />
+    <MainScreen addTodo={addTodo} todos={todos} removeTodo={removeTodo} openTodo={openTodo} />
   );
   if (todoId) {
     let selectedTodo = todos.find((todo) => todo.id === todoId);

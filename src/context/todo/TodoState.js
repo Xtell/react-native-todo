@@ -7,7 +7,6 @@ export const TodoState = ({ children }) => {
     todos: [{ id: 1, title: 'Выучить React Native' }],
   };
   const [state, dispatch] = useReducer(todoReducer, initialState);
-  console.log(state);
   const addTodo = (title) => dispatch({ type: ADD_TODO, title });
   const removeTodo = (id) => dispatch({ type: REMOVE_TODO, id });
   const updateTodo = (id, title) => dispatch({ type: UPDATE_TODO, id, title });
