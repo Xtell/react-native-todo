@@ -1,16 +1,20 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Text, Button, Alert, TextInput } from "react-native";
-import { AppCard } from "../components/ui/AppCard";
-import { EditModal } from "../components/EditModal";
-import { AppButton } from "../components/ui/AppButton";
-import { AppTextBold } from "../components/ui/AppTextBold";
-import { FontAwesome, AntDesign } from "@expo/vector-icons";
-import { THEME } from "../theme";
-export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo }) => {
+import React, { useState, useContext } from 'react';
+import { View, StyleSheet} from 'react-native';
+import { AppCard } from '../components/ui/AppCard';
+import { EditModal } from '../components/EditModal';
+import { AppButton } from '../components/ui/AppButton';
+import { AppTextBold } from '../components/ui/AppTextBold';
+import { FontAwesome, AntDesign } from '@expo/vector-icons';
+import { THEME } from '../theme';
+import { ScreenContext } from '../context/screen/screenContext';
+import { TodoContext } from '../context/todo/todoContext';
+export const TodoScreen = () => {
+  const {todos, removeTodo, updateTodo} = useContext(TodoContext);
+  const {todoId, changeScreen} = useContext(ScreenContext);
+  let todo = todos.find((todo) => todo.id === todoId);
   let [modal, setModal] = useState(false);
-  let [text, setText] = useState(todo.title);
   const closeModal = () => {
-    setModa(false);
+    setModal(false);
   };
   const saveHandler = (title) => {
     setModal(false);
@@ -33,7 +37,7 @@ export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo }) => {
 
       <View style={styles.buttons}>
         <View style={styles.button}>
-          <AppButton color={THEME.DARK_GREY} onPress={goBack}>
+          <AppButton color={THEME.DARK_GREY} onPress={() => changeScreen(null)}>
             <AntDesign name="back" size={20} />
           </AppButton>
         </View>
@@ -52,11 +56,11 @@ export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo }) => {
 
 const styles = StyleSheet.create({
   buttons: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   button: {
-    width: "40%",
+    width: '40%',
   },
   text: {
     fontSize: 18,
@@ -67,15 +71,15 @@ const styles = StyleSheet.create({
   },
   appModal: {},
   modalInput: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 20,
   },
   input: {
     padding: 5,
-    width: "60%",
-    borderStyle: "solid",
+    width: '60%',
+    borderStyle: 'solid',
     borderBottomWidth: 1,
     borderColor: THEME.MAIN_COLOR,
   },

@@ -1,12 +1,11 @@
-import { OPEN_TODO, GO_BACK } from '../types';
+import { CHANGE_SCREEN } from '../types';
 
 const handlers = {
-  [OPEN_TODO]: (state, { id }) => id,
-  [GO_BACK]: () => null,
+  [CHANGE_SCREEN]: (state, payload) => payload,
   DEFAULT: (state) => state,
 };
 
 export const screenReducer = (state, action) => {
   const handler = handlers[action.type] || handlers.DEFAULT;
-  return handler(state, action);
+  return handler(state, action.payload);
 };

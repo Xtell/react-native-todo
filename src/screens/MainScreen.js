@@ -1,24 +1,23 @@
-import React from "react";
-import { View, StyleSheet, FlatList, Image } from "react-native";
-import { AddTodo } from "../components/AddTodo";
-import { Todo } from "../components/Todo";
-export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
+import React, { useContext } from 'react';
+import { View, StyleSheet, FlatList, Image } from 'react-native';
+import { AddTodo } from '../components/AddTodo';
+import { Todo } from '../components/Todo';
+import { TodoContext } from '../context/todo/todoContext';
+import { ScreenContext } from '../context/screen/screenContext';
+export const MainScreen = () => {
+  const { todos, addTodo, removeTodo } = useContext(TodoContext);
+  const {changeScreen} = useContext(ScreenContext);
   let content = (
     <FlatList
       data={todos}
-      renderItem={({ item }) => (
-        <Todo todo={item} onRemove={removeTodo} onOpen={openTodo}></Todo>
-      )}
+      renderItem={({ item }) => <Todo todo={item} onRemove={removeTodo} onOpen={changeScreen}></Todo>}
       keyExtractor={(item) => item.id.toString()}
     />
   );
   if (todos.length === 0) {
     content = (
       <View style={styles.imageWrapper}>
-        <Image
-          style={styles.image}
-          source={require("../../assets/no-items.png")}
-        ></Image>
+        <Image style={styles.image} source={require('../../assets/no-items.png')}></Image>
       </View>
     );
   }
@@ -39,12 +38,12 @@ const styles = StyleSheet.create({
   },
   imageWrapper: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
     width: 200,
     height: 300,
-    resizeMode: "contain",
+    resizeMode: 'contain',
   },
 });

@@ -11,7 +11,7 @@ const handlers = {
       },
     ],
   }),
-  [REMOVE_TODO]: (state, { title }) => ({
+  [REMOVE_TODO]: (state, { id }) => ({
     ...state,
     todos: state.todos.filter((todo) => todo.id !== id),
   }),
